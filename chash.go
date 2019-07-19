@@ -23,6 +23,11 @@ func New(nodes int) *Hash {
 }
 
 func (h *Hash) Get(key []byte) int {
+
+	if h.num < 2 {
+		return 0
+	}
+
 	v := crc32.ChecksumIEEE(key)
 	num := int(v / h.step)
 	if num >= h.num {
@@ -33,5 +38,10 @@ func (h *Hash) Get(key []byte) int {
 }
 
 func (h *Hash) Next(num int) int {
+
+	if h.num < 2 {
+		return 0
+	}
+
 	return (num + 1) % h.num
 }

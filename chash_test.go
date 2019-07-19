@@ -2,7 +2,7 @@ package chash
 
 // @author  Mikhail Kirillov <mikkirillov@yandex.ru>
 // @version 1.000
-// @date    2018-07-04
+// @date    2019-07-09
 
 import (
 	"strconv"
@@ -19,5 +19,15 @@ func TestConsistent(t *testing.T) {
 		if hash.Get(key) != wait[int(i)] {
 			t.Fatal("invalid function value")
 		}
+	}
+
+	hnul := New(1)
+
+	if hnul.Get([]byte("123")) != 0 {
+		t.Fatal("invalid return for 1l value")
+	}
+
+	if hnul.Next(0) != 0 {
+		t.Fatal("invalid Next value for 1 value")
 	}
 }
